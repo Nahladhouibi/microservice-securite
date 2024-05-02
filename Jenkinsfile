@@ -16,19 +16,22 @@ pipeline {
                 }
             }
         }
-
-        stage('Build') {
+    stage('Build and Rename Docker Image') {
             steps {
+                // Utiliser un conteneur Docker pour construire et renommer l'image
                 script {
-                    // Build Docker image
-                    bat "${DOCKER_PATH} build -t securite:latest ."
-
-                    // Install dependencies and run tests
+                    // Construire l'image Docker (ajustez la commande selon vos besoins)
+                    bat 'docker build -t nahladhouibi/securite:%BUILD_ID% .'
+                      // Install dependencies and run tests
                     bat 'npm install'
                     bat 'npm test'
+
+                    // Renommer l'image Docker
+                    bat "docker tag nahladhouibi/securite:%BUILD_ID% nahladhouibi/securite:latest"
                 }
             }
         }
+        
 
         stage('SonarQube Analysis') {
             steps {
