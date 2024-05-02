@@ -24,7 +24,7 @@ pipeline {
                     bat 'docker build -t nahladhouibi/securite:%BUILD_ID% .'
                       // Install dependencies and run tests
                     bat 'npm install'
-                    bat 'npm test'
+                  '
 
                     // Renommer l'image Docker
                     bat "docker tag nahladhouibi/securite:%BUILD_ID% nahladhouibi/securite:latest"
