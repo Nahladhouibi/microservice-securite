@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HOME = "C:\\Programmes\\Docker\\cli-plugins"
-        PATH = "${DOCKER_HOME}:${HOME}"
+        DOCKER_PATH = "C:\\Programmes\\Docker\\cli-plugins"
+        PATH = "${DOCKER_PATH}:${PATH}"
         SONAR_SCANNER_HOME = 'C:\\SonarScanner'
          NODEJS_PATH = "C:\\Programmes (x86)\\nodejs"
     }
@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker image
-                    bat "${DOCKER_HOME} build -t securite:latest ."
+                    bat "${DOCKER_PATH} build -t securite:latest ."
 
                     // Install dependencies and run tests
                     bat 'npm install'
