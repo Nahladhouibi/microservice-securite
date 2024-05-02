@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_PATH = "C:\\Programmes\\Docker\\cli-plugins"
         PATH = "${DOCKER_PATH}:${PATH}"
-        SONAR_SCANNER_HOME = 'C:\\SonarScanner'
+        SONAR_SCANNER_HOME = 'C:\\Users\\nahla\\sonarqube-10.5.1.90531\\'
          NODEJS_PATH = "C:\\Programmes (x86)\\nodejs"
     }
 
