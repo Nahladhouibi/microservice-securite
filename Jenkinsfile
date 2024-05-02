@@ -2,8 +2,10 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HOME = 'C:\\Programmes\\Docker\\docker.exe'
+        DOCKER_HOME = "C:\\Programmes\\Docker\\cli-plugins"
+        PATH = "${DOCKER_HOME}:${HOME}"
         SONAR_SCANNER_HOME = 'C:\\SonarScanner'
+         NODEJS_PATH = "C:\\Programmes (x86)\\nodejs"
     }
 
     stages {
