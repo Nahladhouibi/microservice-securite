@@ -9,8 +9,9 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout code from Git
-                git 'https://github.com/Nahladhouibi/microservice-securite.git'
+                script {
+                    checkout scm
+                }
             }
         }
 
