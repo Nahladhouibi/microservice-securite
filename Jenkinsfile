@@ -56,11 +56,11 @@ pipeline {
        // }
    // }
 
-    post {
-        always {
+   // post {
+        //always {
             // Clean up Docker resources
-            cleanWs()
-            docker.image('securite:latest').remove()
-        }
-    }
+           // cleanWs()
+           // docker.image('securite:latest').remove()
+        //}
+   // }
 //}
