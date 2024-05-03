@@ -38,7 +38,7 @@ pipeline {
     steps {
         // Run SonarQube analysis
         withSonarQubeEnv('sonarquabe') {
-            bat '"C:\\Program Files\\sonar-scanner-5.0.1.3006-windows\\bin\\sonar-scanner"'
+            bat '"C:\\Program Files\\sonar-scanner-5.0.1.3006-windows\\bin\\sonar-scanner" -Dsonar.projectKey=microservices-security'
         }
     }
 }
