@@ -38,7 +38,7 @@ pipeline {
             steps {
                 // Run SonarQube analysis
                 withSonarQubeEnv('sonarquabe') {
-                     bat "${SONAR_SCANNER_HOME}\\bin\\sonar-scanner"
+                     bat '"${SONAR_SCANNER_HOME}\\bin\\sonar-scanner"'
                 }
             }
         }
