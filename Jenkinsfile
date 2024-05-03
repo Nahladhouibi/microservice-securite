@@ -17,14 +17,23 @@ pipeline {
                 }
             }
         }
+        stage('Run Tests') {
+    steps {
+            // Install dependencies and run tests
+                    bat 'npm install'
+        // Exécution des tests unitaires
+        bat 'npm test'
+        // Exécution des tests d'intégration (si applicable)
+        // bat 'npm run integration-test'
+    }
+}
     stage('Build and Rename Docker Image') {
             steps {
                 // Utiliser un conteneur Docker pour construire et renommer l'image
                 script {
                     // Construire l'image Docker (ajustez la commande selon vos besoins)
                     bat 'docker build -t nahladhouibi/securite:%BUILD_ID% .'
-                      // Install dependencies and run tests
-                    bat 'npm install'
+                     
                   
 
                     // Renommer l'image Docker
