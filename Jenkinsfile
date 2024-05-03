@@ -34,14 +34,15 @@ pipeline {
         }
         
 
-        stage('SonarQube Analysis') {
-            steps {
-                // Run SonarQube analysis
-                withSonarQubeEnv('sonarquabe') {
-                     bat '"${SONAR_SCANNER_HOME}\\bin\\sonar-scanner"'
-                }
-            }
+       stage('SonarQube Analysis') {
+    steps {
+        // Run SonarQube analysis
+        withSonarQubeEnv('sonarquabe') {
+            bat '"C:\\Program Files\\sonar-scanner-5.0.1.3006-windows\\bin\\sonar-scanner.bat"'
         }
+    }
+}
+
 
        // stage('Deploy') {
            // steps {
