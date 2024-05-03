@@ -17,19 +17,14 @@ pipeline {
                 }
             }
         }
-        stage('Run Tests') {
-    steps {
-            // Install dependencies and run tests
-                    bat 'npm install'
-       
-}
     stage('Build and Rename Docker Image') {
             steps {
                 // Utiliser un conteneur Docker pour construire et renommer l'image
                 script {
                     // Construire l'image Docker (ajustez la commande selon vos besoins)
                     bat 'docker build -t nahladhouibi/securite:%BUILD_ID% .'
-                     
+                      // Install dependencies and run tests
+                    bat 'npm install'
                   
 
                     // Renommer l'image Docker
@@ -47,25 +42,3 @@ pipeline {
         }
     }
 }
-
-
-       // stage('Deploy') {
-           // steps {
-                // Push Docker image to registry or deploy to Kubernetes, etc.
-                //script {
-                   // docker.withRegistry('https://votre-registry.com', 'credentials-id-pour-le-registry') {
-                        //docker.image('nom-de-votre-image:latest').push('latest')
-                    }
-                }
-            //}
-       // }
-   // }
-
-   // post {
-        //always {
-            // Clean up Docker resources
-           // cleanWs()
-           // docker.image('securite:latest').remove()
-        //}
-   // }
-//}
