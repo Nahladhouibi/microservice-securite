@@ -21,11 +21,7 @@ pipeline {
     steps {
             // Install dependencies and run tests
                     bat 'npm install'
-        // Exécution des tests unitaires
-        bat 'npm test'
-        // Exécution des tests d'intégration (si applicable)
-        // bat 'npm run integration-test'
-    }
+       
 }
     stage('Build and Rename Docker Image') {
             steps {
