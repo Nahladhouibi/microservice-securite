@@ -1,5 +1,7 @@
 const { models } = require('../config/sequelize');
 
+
+
 class PatientService { 
   
     constructor() {}
@@ -39,4 +41,5 @@ class PatientService {
   
   }
   
-  module.exports = PatientService;
+  
+module.exports =  PatientService;

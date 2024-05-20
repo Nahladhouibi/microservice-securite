@@ -38,7 +38,7 @@ const get = async ( req, res ) => {
 const getCoonectedPatientDetails = async ( req, res ) => {
     try {
 
-         console.log("reqqqqqqqqqqqqq");
+         console.log("req");
  
         const response = await service.findOne(req.payload.id);
          console.log(response);
