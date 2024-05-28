@@ -17,6 +17,14 @@ pipeline {
                 }
             }
         }
+         stage('SonarQube Analysis') {
+            steps {
+                // Exécuter l'analyse SonarQube
+                withSonarQubeEnv('sonarquabe') {
+                    bat '"C:\\Program Files\\sonar-scanner-5.0.1.3006-windows\\bin\\sonar-scanner" -Dsonar.projectKey=microservices-security'
+                }
+            }
+        }
         stage('Build and Rename Docker Image') {
             steps {
                 script {
@@ -30,13 +38,6 @@ pipeline {
                 }
             }
         }
-        stage('SonarQube Analysis') {
-            steps {
-                // Exécuter l'analyse SonarQube
-                withSonarQubeEnv('sonarquabe') {
-                    bat '"C:\\Program Files\\sonar-scanner-5.0.1.3006-windows\\bin\\sonar-scanner" -Dsonar.projectKey=microservices-security'
-                }
-            }
-        }
+       
     }
 }
