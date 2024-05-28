@@ -11,6 +11,8 @@ COPY . .
 
 # Optionally, if your microservice requires any build step, perform it here
 # Example: RUN npm run build
+# Installer node-pre-gyp globalement
+RUN npm install -g node-pre-gyp
 
 # Rebuild bcrypt module
 RUN npm rebuild bcrypt --build-from-source
