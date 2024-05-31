@@ -43,7 +43,7 @@ pipeline {
         stage('Tag Docker Image') {
             steps {
                 script {
-                    bat "docker tag nahladhouibi/securité:%BUILD_ID% nahladhouibi/securite2:latest"
+                    bat "docker tag nahladhouibi/securite2:%BUILD_ID% nahladhouibi/securite2:latest"
                 }
             }
         }
