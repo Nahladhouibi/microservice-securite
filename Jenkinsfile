@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     bat 'npm install'
-                    bat 'npm test'
+                    bat 'npm test -- --detectOpenHandles'
                 }
             }
         }
