@@ -36,14 +36,14 @@ pipeline {
             steps {
                 script {
                     // Construire l'image Docker avec élévation de privilèges
-                    bat 'docker build -t nahladhouibi/securité:%BUILD_ID% .'
+                    bat 'docker build -t nahladhouibi/securite2:%BUILD_ID% .'
                 }
             }
         }
         stage('Tag Docker Image') {
             steps {
                 script {
-                    bat "docker tag nahladhouibi/securité:%BUILD_ID% nahladhouibi/securité:latest"
+                    bat "docker tag nahladhouibi/securité:%BUILD_ID% nahladhouibi/securite2:latest"
                 }
             }
         }
@@ -52,8 +52,8 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
                         bat 'docker login -u %DOCKERHUB_USERNAME% -p %DOCKERHUB_PASSWORD%'
-                        bat 'docker push nahladhouibi/securité:%BUILD_ID%'
-                        bat 'docker push nahladhouibi/securité:latest'
+                        bat 'docker push nahladhouibi/securite2:%BUILD_ID%'
+                        bat 'docker push nahladhouibi/securite2:latest'
                     }
                 }
             }
