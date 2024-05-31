@@ -17,27 +17,46 @@ pipeline {
                 }
             }
         }
-         stage('SonarQube Analysis') {
+        stage('Install Dependencies and Run Tests') {
             steps {
-                // Exécuter l'analyse SonarQube
+                script {
+                    bat 'npm install'
+                    bat 'npm test'
+                }
+            }
+        }
+        stage('SonarQube Analysis') {
+            steps {
                 withSonarQubeEnv('sonarquabe') {
                     bat '"C:\\Program Files\\sonar-scanner-5.0.1.3006-windows\\bin\\sonar-scanner" -Dsonar.projectKey=microservices-security'
                 }
             }
         }
-        stage('Build and Rename Docker Image') {
+        stage('Build Docker Image') {
             steps {
                 script {
-                    // Construire l'image Docker (ajustez la commande selon vos besoins)
-                    bat 'docker build -t nahladhouibi/securite:%BUILD_ID% .'
-                    // Installer les dépendances et exécuter les tests
-                    bat 'npm install'
-
-                    // Renommer l'image Docker
-                    bat "docker tag nahladhouibi/securite:%BUILD_ID% nahladhouibi/securite:latest"
+                    // Construire l'image Docker avec élévation de privilèges
+                    bat 'docker build -t nahladhouibi/securité:%BUILD_ID% .'
                 }
             }
         }
-       
+        stage('Tag Docker Image') {
+            steps {
+                script {
+                    bat "docker tag nahladhouibi/securité:%BUILD_ID% nahladhouibi/securité:latest"
+                }
+            }
+        }
+        stage('Publish Docker Image') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                        bat 'docker login -u %DOCKERHUB_USERNAME% -p %DOCKERHUB_PASSWORD%'
+                        bat 'docker push nahladhouibi/securité:%BUILD_ID%'
+                        bat 'docker push nahladhouibi/securité:latest'
+                    }
+                }
+            }
+        }
     }
 }
